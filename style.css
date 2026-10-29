@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background: skyblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 20%
+}
+
+.container h1{
+    font-size: 50px;
+    padding: 20px;
+    margin: 0;
+}
+
+.formulaire{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 5px;
+}
+
+.formulaire input{
+    margin: 10px;
+    padding: 15px;
+    min-width: 38vh;
+    max-width: 38vh;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.formulaire button{
+    padding: 15px;
+    margin: 5px;
+    border: none; 
+    border-radius: 10%;
+    cursor: pointer;
+    background: rgb(80, 161, 193);
+    color: white;
+    font-weight: 1000;
+    box-shadow: 0 1px 0 1px rgb(6, 123, 186);
+}
+
+.formulaire button:active{
+    box-shadow: 0 0 0 0 ;
+}
+
+.formulaire .clear{
+    background-color: rgb(245, 102, 102);
+}
+
+.task{
+    margin: 5px;
+    padding: 6px 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    min-width: 475px;
+    max-width: 475px;
+    box-shadow: 0 0 7px 3px rgb(91, 159, 186);
+}
+
+.task p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: black;
+}
+
+.task input{
+    margin: 0 5px;
+    height: 30px;
+    width: 20px;
+}
+
+.mustRemove{
+    border-radius: 50px;
+}
+
+.mustRemove p{
+    text-decoration: italic;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: dimgray;
+}
