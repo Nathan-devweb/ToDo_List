@@ -67,8 +67,6 @@ body{
 }
 
 details{
-    position: relative;
-    left:-175px;
     color: white;
     font-size: 18px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

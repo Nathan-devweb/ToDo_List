@@ -4,8 +4,10 @@ const btnClear = document.querySelector(".clear")
 const fTasks = document.querySelector(".ftasks")
 const taskFinished = document.querySelector("details")
 
+
 btnAdd.addEventListener("click", add)
-function add(){
+
+function add(e){
   if(inputText.value != ""){
     const div = document.createElement("div")
     div.innerHTML = `        
@@ -22,7 +24,7 @@ function add(){
 
 
 btnClear.addEventListener("click", clear)
-function clear(){
+function clear(e){
   function clearElement(el){
     if(el.checked){
       el.parentElement.remove()
