@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Ma todo list</title>
+</head>
+<body>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background: skyblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 5%
+}
+
+.container h1{
+    font-size: 50px;
+    padding: 20px;
+    margin: 0;
+}
+
+.formulaire{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 5px;
+}
+
+.formulaire input{
+    margin: 10px;
+    padding: 15px;
+    min-width: 38vh;
+    max-width: 38vh;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.formulaire button{
+    padding: 15px;
+    margin: 5px;
+    border: none; 
+    border-radius: 10%;
+    cursor: pointer;
+    background: rgb(80, 161, 193);
+    color: white;
+    font-weight: 1000;
+    box-shadow: 0 1px 0 1px rgb(6, 123, 186);
+}
+
+.formulaire button:active{
+    box-shadow: 0 0 0 0 ;
+}
+
+.formulaire .clear{
+    background-color: rgb(245, 102, 102);
+}
+
+details{
+    position: relative;
+    left:-175px;
+    color: white;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: unset;
+    font-weight: 2000;
+}
+
+.task{
+    margin: 5px;
+    padding: 6px 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    min-width: 475px;
+    max-width: 475px;
+    box-shadow: 0 0 7px 3px rgb(91, 159, 186);
+}
+
+.task p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: black;
+}
+
+.task input{
+    margin: 0 5px;
+    height: 30px;
+    width: 20px;
+}
+
+.mustRemove{
+    border-radius: 50px;
+}
+
+.mustRemove p{
+    text-decoration: italic;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: dimgray;
+}
+</style>
+    <div class="container">
+        <h1>Todo List</h1>
+        <div class="formulaire">
+            <input class="inputtext" type="text" placeholder="Entrer votre tâche ">
+            <button class="add">ADD</button>
+            <button class="clear">CLEAR</button>
+        </div>
+        <div class="ftasks"></div>
+        <details>
+            <summary>Tâches terminées</summary>
+        </details>
+    </div>
+    
+    <script>
+        const inputText = document.querySelector(".inputtext")
+        const btnAdd = document.querySelector(".add")
+        const btnClear = document.querySelector(".clear")
+        const fTasks = document.querySelector(".ftasks")
+        const taskFinished = document.querySelector("details")
+
+        btnAdd.addEventListener("click", add)
+        function add(){
+        if(inputText.value != ""){
+            const div = document.createElement("div")
+            div.innerHTML = `        
+                    <p>${inputText.value}</p>
+                    <input class="inputcheckbox" type="checkbox">`
+            div.classList = "task"
+            fTasks.appendChild(div)
+            inputText.value = ""
+        }
+
+        const inputCheckbox = document.querySelectorAll(".inputcheckbox")
+        inputCheckbox.forEach(checkbox => checkbox.addEventListener("change", finishedTask))
+        }
+
+
+        btnClear.addEventListener("click", clear)
+        function clear(){
+        function clearElement(el){
+            if(el.checked){
+            el.parentElement.remove()
+            }
+        }
+
+        const inputCheckbox = document.querySelectorAll(".inputcheckbox")
+        inputCheckbox.forEach(el => clearElement(el))
+        }
+
+
+        function finishedTask(e){
+        if(e.target.checked){
+            e.target.previousElementSibling.style.textDecoration = "line-through"
+            e.target.parentElement.classList.add("mustRemove");
+            taskFinished.appendChild(e.target.parentElement)
+        }else{
+            e.target.previousElementSibling.style.textDecoration = "none"
+            e.target.parentElement.classList.remove("mustRemove");
+            fTasks.prepend(e.target.parentElement)
+        }
+        }
+    </script>
+</body>
+</html>
