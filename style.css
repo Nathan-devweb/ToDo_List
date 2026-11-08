@@ -1,114 +1,326 @@
-*{
-    margin: 0;
-    padding: 0;
+/* Palette centralisée pour garder une interface cohérente et facile à ajuster. */
+:root {
+    color-scheme: light;
+    --color-page-start: #172554;
+    --color-page-end: #334155;
+    --color-sidebar: #0f172a;
+    --color-surface: #ffffff;
+    --color-surface-muted: #f1f5f9;
+    --color-text: #1e293b;
+    --color-text-muted: #64748b;
+    --color-accent: #0f9f9a;
+    --color-accent-dark: #0b7774;
+    --color-danger: #dc4c4c;
+    --color-focus: #fbbf24;
+    --shadow-card: 0 12px 30px rgb(15 23 42 / 16%);
+    --transition-ui: 180ms ease;
 }
 
-body{
-    padding: 0;
-    margin: 0;
-    background: skyblue;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
-    display: flex;
-    justify-content: center;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-.container{
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, var(--color-page-start), var(--color-page-end));
+    color: var(--color-text);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* L'image est réservée aux grands écrans ; le voile garde le texte lisible. */
+@media (min-width: 1024px) {
+    body {
+        background-image:
+            linear-gradient(rgb(15 23 42 / 68%), rgb(15 23 42 / 78%)),
+            url("img/télécharger (7).jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+.main {
     display: flex;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    top: 5%
+    gap: 20px;
+    min-width: 0;
+    padding: 38px 32px 48px;
 }
 
-.container h1{
-    font-size: 50px;
-    padding: 20px;
+.container h1 {
     margin: 0;
+    color: var(--color-surface);
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    letter-spacing: 0.02em;
+    text-align: center;
 }
 
-.formulaire{
+.formulaire {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin: 5px;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: min(100%, 560px);
 }
 
-.formulaire input{
-    margin: 10px;
-    padding: 15px;
-    min-width: 38vh;
-    max-width: 38vh;
-    margin: 5px;
-    border: none;
-    border-radius: 8px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 15px;
-}
-
-.formulaire button{
-    padding: 15px;
-    margin: 5px;
-    border: none; 
-    border-radius: 10%;
-    cursor: pointer;
-    background: rgb(80, 161, 193);
-    color: white;
-    font-weight: 1000;
-    box-shadow: 0 1px 0 1px rgb(6, 123, 186);
-}
-
-.formulaire button:active{
-    box-shadow: 0 0 0 0 ;
-}
-
-.formulaire .clear{
-    background-color: rgb(245, 102, 102);
-}
-
-details{
-    color: white;
-    font-size: 18px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: unset;
-    font-weight: 2000;
-}
-
-.task{
-    margin: 5px;
-    padding: 6px 10px;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    border: none;
+.formulaire input {
+    flex: 1 1 220px;
+    min-width: 0;
+    padding: 13px 15px;
+    border: 1px solid transparent;
     border-radius: 10px;
-    min-width: 475px;
-    max-width: 475px;
-    box-shadow: 0 0 7px 3px rgb(91, 159, 186);
+    outline: none;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+    font-size: 1rem;
+    transition: border-color var(--transition-ui), box-shadow var(--transition-ui);
 }
 
-.task p{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    color: black;
+.formulaire input::placeholder {
+    color: #94a3b8;
 }
 
-.task input{
-    margin: 0 5px;
-    height: 30px;
+.formulaire input:focus-visible {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgb(15 159 154 / 22%);
+}
+
+.formulaire button {
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--color-accent);
+    box-shadow: 0 4px 10px rgb(15 23 42 / 18%);
+    color: var(--color-surface);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    transition: background-color var(--transition-ui), box-shadow var(--transition-ui), transform var(--transition-ui);
+}
+
+.formulaire button:hover {
+    transform: translateY(-2px);
+    background: var(--color-accent-dark);
+    box-shadow: 0 7px 14px rgb(15 23 42 / 22%);
+}
+
+.formulaire button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgb(15 23 42 / 18%);
+}
+
+.formulaire button:focus-visible,
+.days p:focus-visible,
+summary:focus-visible,
+.task input:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+}
+
+.formulaire .clear {
+    background: var(--color-danger);
+}
+
+.formulaire .clear:hover {
+    background: #b93636;
+}
+
+.tasktodo,
+.taskfinished {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(100%, 560px);
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 15px;
+    border: 1px solid rgb(255 255 255 / 55%);
+    border-radius: 12px;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition-ui), transform var(--transition-ui);
+}
+
+.task:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgb(15 23 42 / 22%);
+}
+
+.task p {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: var(--color-text);
+    font-size: 1rem;
+}
+
+.task input {
+    flex: 0 0 auto;
     width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--color-accent);
+    cursor: pointer;
 }
 
-.mustRemove{
-    border-radius: 50px;
+.mustRemove {
+    background: var(--color-surface-muted);
 }
 
-.mustRemove p{
-    text-decoration: italic;
-    font-family: 'Times New Roman', Times, serif;
+.mustRemove p {
+    color: var(--color-text-muted);
     font-style: italic;
-    color: dimgray;
+    text-decoration: line-through;
 }
+
+details {
+    width: min(100%, 560px);
+    margin-top: 8px;
+    color: var(--color-surface);
+}
+
+summary {
+    width: fit-content;
+    margin: 0 auto 14px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: color var(--transition-ui);
+}
+
+summary:hover {
+    color: #99f6e4;
+}
+
+.days {
+    display: flex;
+    flex: 0 0 220px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    min-height: 100vh;
+    padding: 24px 14px;
+    background: rgb(15 23 42 / 72%);
+    box-shadow: 8px 0 24px rgb(15 23 42 / 15%);
+}
+
+.days h2 {
+    margin: 0 0 12px;
+    padding: 0 12px;
+    color: var(--color-surface);
+    font-size: 1.5rem;
+}
+
+.days p {
+    width: 100%;
+    margin: 0;
+    padding: 11px 12px;
+    border-radius: 9px;
+    color: #cbd5e1;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color var(--transition-ui), color var(--transition-ui), transform var(--transition-ui);
+    user-select: none;
+}
+
+.days p:hover {
+    transform: translateX(3px);
+    background: rgb(255 255 255 / 9%);
+    color: var(--color-surface);
+}
+
+#courently,
+.days .choice {
+    background: var(--color-accent);
+    color: var(--color-surface);
+    font-weight: 700;
+}
+
+/* La mise en page passe en navigation horizontale sur les écrans étroits. */
+@media (max-width: 700px) {
+    .main {
+        flex-direction: column;
+    }
+
+    .days {
+        flex: 0 0 auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
+        min-height: 0;
+        padding: 14px;
+        box-shadow: 0 8px 20px rgb(15 23 42 / 15%);
+    }
+
+    .days h2 {
+        flex: 0 0 100%;
+        margin: 0 0 4px;
+        font-size: 1.25rem;
+    }
+
+    .days p {
+        width: auto;
+        padding: 9px 11px;
+        font-size: 0.92rem;
+    }
+
+    .days p:hover {
+        transform: translateY(-1px);
+    }
+
+    .container {
+        padding: 30px 18px 40px;
+    }
+}
+
+@media (max-width: 420px) {
+    .formulaire {
+        gap: 8px;
+    }
+
+    .formulaire input {
+        flex-basis: 100%;
+    }
+
+    .formulaire button {
+        flex: 1;
+    }
+}
+
+/* Respecte le réglage système qui réduit les animations. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/*
+ * Petit cours : les media queries
+ * Une media query applique des styles seulement si une condition est vraie.
+ * Exemple : @media (max-width: 700px) cible les écrans de 700 px ou moins.
+ * On peut alors adapter la mise en page, comme ici en empilant le menu
+ * et le contenu pour éviter qu'ils soient trop serrés sur téléphone.
+ * Les styles hors de la media query restent les règles par défaut.
+ */

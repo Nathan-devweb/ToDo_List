@@ -4,21 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Ma todo list</title>
+    <title>Ma toDo List</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Todo List</h1>
-        <div class="formulaire">
-            <input class="inputtext" type="text" placeholder="Entrer votre tâche ">
-            <button class="add">ADD</button>
-            <button class="clear">CLEAR</button>
-        </div>
-        <div class="ftasks"></div>
-        <details>
-            <summary>Tâches terminées</summary>
-        </details>
-    </div>
+    <section class="main">
+        <section class="days">
+            <h2>Jours</h2>
+            <p class="courently choice" id="courently">Tous les jours</p>
+            <p class="monday">Lundi</p>
+            <p class="tuesday">Mardi</p>
+            <p class="wednesday">Mercredi</p>
+            <p class="thurday">Jeudi</p>
+            <p class="friday">Vendredi</p>
+            <p class="saturday">Samedi</p>
+            <p class="sunday">Dimanche</p>
+        </section>
+        <section class="container">
+            <h1>ToDo List</h1>
+            <div class="formulaire">
+                <input class="inputtext moi" type="text" placeholder="Entrer votre tâche ">
+                <button class="add">ADD</button>
+                <button class="clear">CLEAR</button>
+            </div>
+            <div class="tasktodo"></div>
+            <details>
+                <summary>Tâches terminées</summary>
+                <div class="taskfinished"></div>
+            </details>
+        </section>
+    </section>
     
     <script src="script.js"></script>
 </body>
