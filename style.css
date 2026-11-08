@@ -257,6 +257,15 @@ summary:hover {
 
 /* La mise en page passe en navigation horizontale sur les écrans étroits. */
 @media (max-width: 700px) {
+    body {
+        background-image:
+            linear-gradient(rgb(15 23 42 / 62%), rgb(15 23 42 / 76%)),
+            url("img/killua.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
     .main {
         flex-direction: column;
     }

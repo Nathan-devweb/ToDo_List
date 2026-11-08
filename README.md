@@ -9,7 +9,7 @@ Une petite application de liste de tâches réalisée avec HTML, CSS et JavaScri
 - Marquer une tâche comme terminée : elle apparaît dans la section « Tâches terminées ».
 - Supprimer les tâches cochées avec le bouton **CLEAR**.
 - Utiliser une interface responsive, adaptée aux petits et grands écrans.
-- Afficher une image de fond sur les écrans d’au moins 1024 px de large.
+- Afficher l’image de Luffy en fond sur les grands écrans (à partir de 1024 px) et celle de Killua sur les petits écrans (jusqu’à 700 px).
 
 ## Lancer l’application
 
@@ -26,6 +26,7 @@ Aucun serveur, gestionnaire de paquets ou outil de compilation n’est nécessai
 | [`style.css`](./style.css) | Apparence, transitions et règles responsive |
 | [`script.js`](./script.js) | Ajout, affichage, sélection des jours et gestion des tâches |
 | [`img/télécharger (7).jpg`](./img/télécharger%20(7).jpg) | Image de fond utilisée sur les grands écrans |
+| [`img/killua.jpg`](./img/killua.jpg) | Image de fond utilisée sur les petits écrans |
 
 ## Utilisation
 
@@ -41,4 +42,4 @@ Les tâches sont conservées uniquement en mémoire pendant l’utilisation de l
 
 ## Personnaliser l’image de fond
 
-L’image de fond est définie dans la media query `@media (min-width: 1024px)` de [`style.css`](./style.css). Pour la remplacer, ajoutez une autre image dans le dossier `img`, puis modifiez le chemin de `url(...)`. Sur les écrans plus étroits, le dégradé reste affiché à la place de l’image.
+Les images de fond et leurs seuils sont définis dans les media queries de [`style.css`](./style.css) : Killua jusqu’à 700 px de largeur et Luffy à partir de 1024 px. Entre ces deux tailles, le dégradé reste affiché. Pour remplacer une image, ajoutez le nouveau fichier au dossier `img`, puis modifiez son chemin dans la règle CSS correspondante.
